@@ -1,8 +1,14 @@
 /** MODIFIED CSS ***/
 
 @font-face {
-	font-family: FontLato;
+	font-family: FontLatoHairline;
 	src: url(Lato/Lato-Hairline.ttf);
+	font-size: 21pt;
+}
+
+@font-face {
+	font-family: FontLatoLight;
+	src: url(Lato/Lato-Light.ttf);
 	font-size: 21pt;
 }
 
@@ -13,8 +19,9 @@ body
 	margin: 0;
 	padding: 0;
 	color: #666;
-	font: normal 21pt FontLato;
 	background: #FFFFFF;
+	font-family: FontLatoHairline;
+	font-size: 21pt;
 }
 
 #page
@@ -277,6 +284,7 @@ div.search-form
 	width: 30%;
 	text-align: center;
 	max-width: 300px;
+	border: #E6E6E6 1px solid;
 }
 
 .signup-form {
@@ -288,6 +296,7 @@ div.search-form
 	width: 30%;
 	text-align: center;
 	max-width: 300px;
+	border: #E6E6E6 1px solid;
 }
 
 .login-row {
@@ -315,32 +324,110 @@ div.search-form
 	border: 1px solid #F2F2F2;
 	width: 90%;
 	line-height: 21px;
+	border: #E6E6E6 1px solid;
 }
+
+.iris-index {
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 30px;
+}
+
+.iris-index .row .row-welcome, 
+.iris-index .row .row-cap,
+.iris-index .row .iris-red-label {
+	font-family: FontLatoLight;
+	text-align: center;
+}
+
+.row-welcome {
+	color: #666;
+	font-size: 48pt;
+}
+
+.row-cap {
+	color: #666;
+	font-size: 24pt;
+}
+
+.iris-red-label a {
+	color: #E74B3C;
+	font-size: 48pt;
+	text-decoration: none;
+}
+
+.iris-index .row .hexagon {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+
+
 
 .hexagon {
   position: relative;
-  width: 300px; 
-  height: 173.21px;
-  background-color: #ebebeb;
-  margin: 86.60px 0;
+  width: 226px; 
+  height: 130.48px;
+  margin: 65.24px 0;
+  background-image: url(https://fbcdn-sphotos-c-a.akamaihd.net/hphotos-ak-xfa1/v/t1.0-9/10418358_10202725772639610_4213992033456247481_n.jpg?oh=625066714f73e265d6a127b62f8bfa8a&oe=546F7301&__gda__=1415635692_25db1671d0b6fe116a510b3d4bce4ba9);
+  background-size: auto 260.9623px;
+  background-position: center;
 }
 
-.hexagon:before,
+.hexTop,
+.hexBottom {
+  position: absolute;
+  z-index: 1;
+  width: 159.81px;
+  height: 159.81px;
+  overflow: hidden;
+  -webkit-transform: scaleY(0.5774) rotate(-45deg);
+  -ms-transform: scaleY(0.5774) rotate(-45deg);
+  transform: scaleY(0.5774) rotate(-45deg);
+  background: inherit;
+  left: 33.10px;
+}
+
+/*counter transform the bg image on the caps*/
+.hexTop:after,
+.hexBottom:after {
+  content: "";
+  position: absolute;
+  width: 226.0000px;
+  height: 130.48116083685542px;
+  -webkit-transform:  rotate(45deg) scaleY(1.7321) translateY(-65.2406px);
+  -ms-transform:      rotate(45deg) scaleY(1.7321) translateY(-65.2406px);
+  transform:          rotate(45deg) scaleY(1.7321) translateY(-65.2406px);
+  -webkit-transform-origin: 0 0;
+  -ms-transform-origin: 0 0;
+  transform-origin: 0 0;
+  background: inherit;
+}
+
+.hexTop {
+  top: -79.9031px;
+}
+
+.hexTop:after {
+  background-position: center top;
+}
+
+.hexBottom {
+  bottom: -79.9031px;
+}
+
+.hexBottom:after {
+  background-position: center bottom;
+}
+
 .hexagon:after {
   content: "";
   position: absolute;
-  width: 0;
-  border-left: 150px solid transparent;
-  border-right: 150px solid transparent;
-}
-
-.hexagon:before {
-  bottom: 100%;
-  border-bottom: 86.60px solid #ebebeb;
-}
-
-.hexagon:after {
-  top: 100%;
-  width: 0;
-  border-top: 86.60px solid #ebebeb;
+  top: 0.0000px;
+  left: 0;
+  width: 226.0000px;
+  height: 130.4812px;
+  z-index: 2;
+  background: inherit;
 }

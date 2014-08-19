@@ -60,3 +60,4 @@ INDEX ind_question (question_id),
 PRIMARY KEY (id)
 );
 
+INSERT INTO `iris`.`users` (`id`, `username`, `password`, `email_address`, `first_name`, `last_name`, `middle_name`, `birthdate`, `address`, `image_url`, `caps`, `is_posted`, `date_added`, `last_login`) VALUES (NULL, 'chalauron', MD5('chacha'), 'charlene.lauron@seer-technologies.com', 'Charlene', 'Lauron', 'Z', '1987-05-19', 'Malate, Manila', NULL, 'Dev', '0', CURRENT_TIMESTAMP, '2014-08-19');

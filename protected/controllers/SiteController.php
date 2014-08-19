@@ -27,9 +27,10 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
-		// renders the view file 'protected/views/site/index.php'
-		// using the default layout 'protected/views/layouts/main.php'
-		$this->render('index');
+		$userInfo = Yii::app()->user;
+
+		$data['userInfo'] = $userInfo;
+		$this->render('index', $data);
 	}
 
 	/**
@@ -44,32 +45,6 @@ class SiteController extends Controller
 			else
 				$this->render('error', $error);
 		}
-	}
-
-	/**
-	 * Displays the contact page
-	 */
-	public function actionContact()
-	{
-		$model=new ContactForm;
-		if(isset($_POST['ContactForm']))
-		{
-			$model->attributes=$_POST['ContactForm'];
-			if($model->validate())
-			{
-				$name='=?UTF-8?B?'.base64_encode($model->name).'?=';
-				$subject='=?UTF-8?B?'.base64_encode($model->subject).'?=';
-				$headers="From: $name <{$model->email}>\r\n".
-					"Reply-To: {$model->email}\r\n".
-					"MIME-Version: 1.0\r\n".
-					"Content-Type: text/plain; charset=UTF-8";
-
-				mail(Yii::app()->params['adminEmail'],$subject,$model->body,$headers);
-				Yii::app()->user->setFlash('contact','Thank you for contacting us. We will respond to you as soon as possible.');
-				$this->refresh();
-			}
-		}
-		$this->render('contact',array('model'=>$model));
 	}
 
 	/**
@@ -91,11 +66,44 @@ class SiteController extends Controller
 		{
 			$model->attributes=$_POST['LoginForm'];
 			// validate user input and redirect to the previous page if valid
-			if($model->validate() && $model->login())
-				$this->redirect(Yii::app()->user->returnUrl);
+			if($model->validate() && $model->login()){
+				$attr['password'] = md5($model->password);
+				$where['condition'] = '(username = :username OR email_address = :email)';
+				$where['params'] = array(':username'=>$model->username, ':email'=>$model->username);
+				$users = Users::model()->findByAttributes($attr, $where);
+				if($users->first_name == null || $users->last_name == null) {
+					$this->redirect('profile');
+				} else {
+					$this->redirect('index');
+				}
+			}
 		}
 		// display the login form
 		$this->render('login',array('model'=>$model));
+	}
+
+	/**
+	 * Displays the login page
+	 */
+	public function actionProfile($id)
+	{
+		$model = Users::model()->findByPk($id);
+		if(!is_null($model)) {
+			
+			// collect user input data
+			if(isset($_POST['LoginForm']))
+			{
+				$model->attributes=$_POST['LoginForm'];
+				// validate user input and redirect to the previous page if valid
+				if($model->validate() && $model->login()){
+					$this->redirect('site/index');
+				}
+			}
+			// display the login form
+			$this->render('profile',array('model'=>$model));
+		} else {
+			throw new CHttpException(404,'The specified post cannot be found.');
+		}
 	}
 
 	/**
@@ -117,8 +125,9 @@ class SiteController extends Controller
 		{
 			$model->attributes=$_POST['LoginForm'];
 			// validate user input and redirect to the previous page if valid
-			if($model->validate() && $model->login())
-				$this->redirect('site/index');
+			if($model->validate() && $model->login()) {
+				$this->redirect('index');
+			}
 		}
 		// display the login form
 		$this->render('signup',array('model'=>$model));
