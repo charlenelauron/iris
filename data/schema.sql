@@ -51,7 +51,7 @@ PRIMARY KEY (id)
 CREATE TABLE feedbacks (
 id INT (11) NOT NULL AUTO_INCREMENT,
 question_id INT (11) NOT NULL,
-answer BLOB NOT NULL,
+answer INT(1) NOT NULL,
 date_added TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 INDEX ind_question (question_id),
     FOREIGN KEY (question_id) 

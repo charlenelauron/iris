@@ -40,5 +40,10 @@
 			<?php echo CHtml::submitButton('Save', array('class'=>'iris-button button-rounded-corner')); ?>
 		</div>
 
+		<div>
+			<?php echo CHtml::button('Cancel', array('class'=>'iris-cancel button-rounded-corner', 'onclick'=>'window.location=\''.Yii::app()->createUrl('site/index').'\'')); ?>
+		</div>
+
+
 	<?php echo CHtml::endForm(); ?>
 </div><!-- form -->

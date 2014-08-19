@@ -26,5 +26,10 @@
 			<?php echo CHtml::submitButton('Sign Up', array('class'=>'iris-button button-rounded-corner')); ?>
 		</div>
 
+		<div>
+			<?php echo CHtml::button('Cancel', array('class'=>'iris-cancel button-rounded-corner', 'onclick'=>'window.location=\''.Yii::app()->createUrl('site/login').'\'')); ?>
+		</div>
+
+
 	<?php $this->endWidget(); ?>
 </div><!-- form -->

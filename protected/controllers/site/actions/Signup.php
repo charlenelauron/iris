@@ -3,6 +3,7 @@
 class Signup extends CAction {
 	
 	public function run() {
+		$controller = $this->getController();
 		$model=new Users;
 
 		// if it is ajax validation request
@@ -18,11 +19,11 @@ class Signup extends CAction {
 			$model->attributes=$_POST['LoginForm'];
 			// validate user input and redirect to the previous page if valid
 			if($model->validate() && $model->login()) {
-				$this->redirect('index');
+				$controller->redirect('index');
 			}
 		}
 		// display the login form
-		$this->render('signup',array('model'=>$model));
+		$controller->render('signup',array('model'=>$model));
 	}
 }
 

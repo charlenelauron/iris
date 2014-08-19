@@ -23,5 +23,8 @@ $this->pageTitle=Yii::app()->name;
 		<div class="row-cap">
 			<?php echo strtoupper($userInfo->caps); ?>
 		</div>
+		<div class="row-logout">
+			<?php echo CHtml::link('Logout', Yii::app()->createUrl('site/logout'), array('class'=>'iris-link')); ?>
+		</div>
 	</div>
 </div>

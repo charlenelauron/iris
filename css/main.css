@@ -318,6 +318,29 @@ div.search-form
 	width: 35%;
 }
 
+.iris-cancel:hover {
+	background: #E4E4E4;
+	color: #666;
+	font-weight: bold;
+	border: 0;
+	width: 35%;
+}
+
+.iris-cancel {
+	background: #F2F2F2;
+	color: #666;
+	font-weight: bold;
+	border: 0;
+	width: 35%;
+}
+
+.iris-link, .iris-link:hover {
+	color: #E74B3C;
+	font-weight: bold;
+	text-decoration: none;
+	font-size: 14pt;
+}
+
 .iris-textfield {
 	background: #FFF;
 	padding: 5px 10px 5px 10px;
@@ -335,7 +358,8 @@ div.search-form
 
 .iris-index .row .row-welcome, 
 .iris-index .row .row-cap,
-.iris-index .row .iris-red-label {
+.iris-index .row .iris-red-label,
+.iris-index .row-logout {
 	font-family: FontLatoLight;
 	text-align: center;
 }
@@ -364,6 +388,21 @@ div.search-form
 
 
 
+
+
+
+
+.hexagon:hover:before {
+  content: '';
+  display: block;
+  background-image: url(https://fbcdn-sphotos-c-a.akamaihd.net/hphotos-ak-xaf1/t1.0-9/10624606_428505790621445_2643014639926098230_n.jpg);
+  width: 20px; /* image width */
+  height: 100px; /* image height */
+  position: absolute;
+  top: 0;
+  right: 0;
+  opacity: 0.6;
+}
 
 .hexagon {
   position: relative;

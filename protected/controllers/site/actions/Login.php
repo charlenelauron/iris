@@ -23,9 +23,9 @@ class Login extends CAction {
 				$where['params'] = array(':username'=>$model->username, ':email'=>$model->username);
 				$users = Users::model()->findByAttributes($attr, $where);
 				if($users->first_name == null || $users->last_name == null) {
-					$this->redirect('profile');
+					$controller->redirect('profile');
 				} else {
-					$this->redirect('index');
+					$controller->redirect('index');
 				}
 			}
 		}

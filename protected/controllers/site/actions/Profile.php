@@ -13,7 +13,7 @@ class Profile extends CAction {
 				$model->attributes=$_POST['LoginForm'];
 				// validate user input and redirect to the previous page if valid
 				if($model->validate() && $model->login()){
-					$this->redirect('site/index');
+					$controller->redirect('site/index');
 				}
 			}
 			// display the login form
