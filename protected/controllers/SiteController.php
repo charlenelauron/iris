@@ -99,28 +99,37 @@ class SiteController extends Controller
 	}
 
 	/**
-	 * Displays the login page
+	 * Displays the signUp page
 	 */
 	public function actionSignup()
 	{
 		$model=new Users;
 
-		// if it is ajax validation request
-		if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')
-		{
-			echo CActiveForm::validate($model);
-			Yii::app()->end();
-		}
-
 		// collect user input data
-		if(isset($_POST['LoginForm']))
+		if(isset($_POST['Users']))
 		{
-			$model->attributes=$_POST['LoginForm'];
+			$model->attributes=$_POST['Users'];
 			// validate user input and redirect to the previous page if valid
-			if($model->validate() && $model->login())
-				$this->redirect('site/index');
+			
+			if(isset($_POST['ajax']) && $_POST['ajax']==='sign-up-form')
+			{
+				echo CActiveForm::validate($model);
+				Yii::app()->end();
+			}
+			
+			$model->validate();
+			$uploadedFile=CUploadedFile::getInstance($model,'image_url');
+            $rnd = rand(0,9999);
+            $fileName = "{$rnd}-{$uploadedFile}";  // random number + file name
+            $model->image_url = '/uploads/'.$fileName;
+ 
+            if($model->save())
+            {
+            	$model = new Users;
+                $uploadedFile->saveAs(Yii::app()->basePath.'/uploads/'.$fileName);  // image will uplode to rootDirectory/banner/
+            }
 		}
-		// display the login form
+		
 		$this->render('signup',array('model'=>$model));
 	}
 
