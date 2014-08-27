@@ -27,6 +27,9 @@ class Users extends CActiveRecord
 	/**
 	 * @return string the associated database table name
 	 */
+	 
+	public $password_repeat;
+	
 	public function tableName()
 	{
 		return 'users';
@@ -40,7 +43,7 @@ class Users extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('username, password, email_address, date_added, last_login', 'required'),
+			array('username, password, email_address', 'required'),
 			array('is_posted', 'numerical', 'integerOnly'=>true),
 			array('username', 'length', 'max'=>50),
 			array('password', 'length', 'max'=>32),
@@ -48,6 +51,7 @@ class Users extends CActiveRecord
 			array('first_name, last_name, middle_name', 'length', 'max'=>150),
 			array('address, image_url, caps', 'length', 'max'=>255),
 			array('birthdate', 'safe'),
+			array('password_repeat', 'compare', 'compareAttribute'=>'password','message'=>'Passwords do not match'), 
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, username, password, email_address, first_name, last_name, middle_name, birthdate, address, image_url, caps, is_posted, date_added, last_login', 'safe', 'on'=>'search'),
